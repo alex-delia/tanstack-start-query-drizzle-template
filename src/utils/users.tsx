@@ -14,6 +14,7 @@ export const DEPLOY_URL =
 // This is a server function that fetches users from the API
 // Server functions allow us to use private networking in Railway
 const fetchUsers = createServerFn({ method: 'GET' }).handler(async () => {
+	console.info('Fetching users...');
 	return axios
 		.get<Array<User>>(DEPLOY_URL + '/api/users')
 		.then((r) => r.data)
@@ -32,6 +33,7 @@ export const usersQueryOptions = () =>
 const fetchUser = createServerFn({ method: 'GET' })
 	.validator((d: string) => d)
 	.handler(async ({ data }) => {
+		console.info(`Fetching user with id ${data}...`);
 		return axios
 			.get<User>(DEPLOY_URL + '/api/users/' + data)
 			.then((r) => r.data)
