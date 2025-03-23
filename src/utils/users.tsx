@@ -19,7 +19,7 @@ const fetchUsers = createServerFn({ method: 'GET' }).handler(async () => {
 		.get<Array<User>>(DEPLOY_URL + '/api/users')
 		.then((r) => r.data)
 		.catch((error) => {
-			console.error(error);
+			console.error('Error fetching users', error);
 			throw new Error('Failed to fetch users');
 		});
 });
