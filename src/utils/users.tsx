@@ -1,6 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 import { createServerFn } from '@tanstack/react-start';
 import axios from 'redaxios';
+import 'dotenv/config';
 
 export type User = {
 	id: number;
@@ -9,7 +10,7 @@ export type User = {
 };
 
 export const DEPLOY_URL =
-	import.meta.env.VITE_RAILWAY_PRIVATE_URL || 'http://localhost:3000';
+	process.env.RAILWAY_PRIVATE_URL || 'http://localhost:3000';
 
 /* Normally we don't need to use server functions to fetch data
  But fetching with server functions allows us to gain all the 
