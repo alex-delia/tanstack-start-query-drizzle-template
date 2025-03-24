@@ -9,6 +9,7 @@ export const usersTable = pgTable('users', {
 
 export const postsTable = pgTable('posts', {
 	id: integer().primaryKey().generatedAlwaysAsIdentity(),
+	authorId: integer().references(() => usersTable.id),
 	title: varchar({ length: 255 }).notNull(),
 	body: varchar().notNull(),
 });
