@@ -1,7 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 import { createServerFn } from '@tanstack/react-start';
 import axios from 'redaxios';
-import 'dotenv/config';
 
 export type User = {
 	id: number;
