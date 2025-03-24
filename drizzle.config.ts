@@ -5,6 +5,6 @@ export default defineConfig({
 	schema: './src/db/schema.ts',
 	dialect: 'postgresql',
 	dbCredentials: {
-		url: import.meta.env.VITE_DATABASE_URL!,
+		url: process.env.VITE_DATABASE_URL!,
 	},
 });

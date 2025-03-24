@@ -11,16 +11,16 @@ export type User = {
 export const DEPLOY_URL =
 	import.meta.env.VITE_RAILWAY_PRIVATE_URL || 'http://localhost:3000';
 
-// This is a server function that fetches users from the API
-// Server functions allow us to use private networking in Railway
+/* Normally we don't need to use server functions to fetch data
+ But fetching with server functions allows us to gain all the 
+ benefits of private networking in Railway */
 const fetchUsers = createServerFn({ method: 'GET' }).handler(async () => {
-	console.info('Fetching users...');
 	return axios
 		.get<Array<User>>(DEPLOY_URL + '/api/users')
 		.then((r) => r.data)
 		.catch((error) => {
 			console.error('Error fetching users', error);
-			throw new Error('Failed to fetch users');
+			throw error;
 		});
 });
 
@@ -30,6 +30,9 @@ export const usersQueryOptions = () =>
 		queryFn: () => fetchUsers(),
 	});
 
+/* Normally we don't need to use server functions to fetch data
+ But fetching with server functions allows us to gain all the 
+ benefits of private networking in Railway */
 const fetchUser = createServerFn({ method: 'GET' })
 	.validator((d: string) => d)
 	.handler(async ({ data }) => {

@@ -1,7 +1,18 @@
 import { db } from './index';
-import { usersTable } from './schema';
+import { postsTable, usersTable } from './schema';
 
-const seedUsers = [
+interface User {
+	name: string;
+	email: string;
+	age: number;
+}
+
+interface Post {
+	title: string;
+	body: string;
+}
+
+const seedUsers: User[] = [
 	{
 		name: 'Leanne Graham',
 		email: 'Sincere@april.biz',
@@ -29,6 +40,29 @@ const seedUsers = [
 	},
 ];
 
+const seedPosts: Post[] = [
+	{
+		title: 'Post 1',
+		body: 'Content 1',
+	},
+	{
+		title: 'Post 2',
+		body: 'Content 2',
+	},
+	{
+		title: 'Post 3',
+		body: 'Content 3',
+	},
+	{
+		title: 'Post 4',
+		body: 'Content 4',
+	},
+	{
+		title: 'Post 5',
+		body: 'Content 5',
+	},
+];
+
 async function seed() {
 	try {
 		console.log('🌱 Seeding database...');
@@ -38,6 +72,7 @@ async function seed() {
 
 		// Insert seed data
 		await db.insert(usersTable).values(seedUsers);
+		await db.insert(postsTable).values(seedPosts);
 
 		console.log('✅ Database seeded successfully');
 	} catch (error) {

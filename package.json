@@ -6,8 +6,11 @@
 	"scripts": {
 		"dev": "vinxi dev",
 		"build": "vinxi build",
-		"start": "vinxi start",
-		"seed": "tsx src/db/seed.ts"
+		"start": "npm run db:migrate && node .output/server/index.mjs",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio",
+		"db:seed": "tsx src/db/seed.ts"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.66.0",
